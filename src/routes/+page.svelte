@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Toggle } from 'flowbite-svelte';
-	import { SearchOutline, MapPinAltOutline, SunOutline } from 'flowbite-svelte-icons';
-	import { Card } from 'flowbite-svelte';
+	import { SearchOutline, MapPinAltOutline } from 'flowbite-svelte-icons';
+	import { Card, DarkMode } from 'flowbite-svelte';
     import { Button, GradientButton } from 'flowbite-svelte';
 	import axios from 'axios';
 
@@ -43,13 +43,11 @@
 <div class="w-screen h-screen flex flex-col items-center">
     <header class="flex justify-between w-1/2">
         <div>
-            <h1 class="text-3xl font-bold">WeatherMe</h1>
+            <h1 class="text-3xl font-bold dark:text-white dark:text-white">WeatherMe</h1>
         </div>
         <div class="flex space-x-10">
             <Toggle class="text-xl" color="purple">°F</Toggle>
-            <button>
-                <SunOutline size="lg"/>
-            </button>
+            <DarkMode/>
         </div>
     </header>
     <main class="w-full flex flex-col items-center mt-10 space-y-10">
@@ -64,42 +62,42 @@
         </form>
         {#if weatherData}
         <Card padding="xl" size="lg" class=" duration-300 ease-in-out bg-gradient-to-br from-purple-500 to-purple-200 text-white">
-            <h5 class="flex space-x-2">
+            <h5 class="flex space-x-2 dark:text-white">
                 {weatherData.data.location.name}
                 <MapPinAltOutline />
             </h5>
             <div class="flex items-center space-x-5 justify-center">
-                <span class="text-center text-4xl mt-5"> {weatherData.data.current.temp_c}°C </span>
+                <span class="text-center text-4xl mt-5 dark:text-white"> {weatherData.data.current.temp_c}°C </span>
                 <img class="w-10 h-10" src={weatherData.data.current.condition.icon} alt=""/>
             </div>
             <div class="flex flex-row w-full space-x-5 mt-5 justify-center">
                 <div class="flex flex-col items-center">
-                    <span>Humidade</span>
-                    <span>{weatherData.data.current.humidity}%</span>
+                    <span class="dark:text-white">Humidade</span>
+                    <span class="dark:text-white">{weatherData.data.current.humidity}%</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <span>Visibilidade</span>
-                    <span>{weatherData.data.current.vis_km}km</span>
+                    <span class="dark:text-white">Visibilidade</span>
+                    <span class="dark:text-white">{weatherData.data.current.vis_km}km</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <span class="text-nowrap">Pressão do Ar</span>
-                    <span>{weatherData.data.current.pressure_mb}hPa</span>
+                    <span class="text-nowrap dark:text-white">Pressão do Ar</span>
+                    <span class="dark:text-white">{weatherData.data.current.pressure_mb}hPa</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <span>Vento</span>
-                    <span>{weatherData.data.current.wind_kph}km/h</span>
+                    <span class="dark:text-white">Vento</span>
+                    <span class="dark:text-white">{weatherData.data.current.wind_kph}km/h</span>
                 </div>
             </div>
         </Card>
         {/if}
         {#if forecast.length > 0}
-            <h2 class="text-3xl font-semibold">Previsão de hoje</h2>
+            <h2 class="text-3xl font-semibold dark:text-white">Previsão de hoje</h2>
             <div class="flex items-center justify-center flex-row space-x-5 flex-wrap w-full">
                 {#each forecast as hourData}
                 <Card size="sm" class="duration-300 ease-in-out bg-gradient-to-br from-purple-500 to-purple-200 text-white items-center">
-                    <span class="text-center font-bold">{getHour(hourData.time)}:00</span>
+                    <span class="text-center font-bold dark:text-white">{getHour(hourData.time)}:00</span>
                     <img class="w-32 h-32" src={hourData.condition.icon} alt="" />
-                    <span class="text-center text-xl">{hourData.temp_c}°C</span>
+                    <span class="text-center text-xl dark:text-white">{hourData.temp_c}°C</span>
                 </Card>
                 {/each}
             </div>
