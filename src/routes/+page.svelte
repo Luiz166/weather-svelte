@@ -19,7 +19,7 @@
 
         if(location != ''){
             await axios
-            .post(`http://api.weatherapi.com/v1/current.json/forecast.json?key=${api_key}&q=${location}`)
+            .post(`https://api.weatherapi.com/v1/current.json/forecast.json?key=${api_key}&q=${location}`)
             .then(res => {
                 toggleVisible()
                 weatherData = res;
